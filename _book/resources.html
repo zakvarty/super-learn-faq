@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 13 Resources | MLDS Supervised Learning Student Questions</title>
 <meta name="author" content="Zak Varty">
-<meta name="description" content="13.1 Publishing HTML books can be published online, see: https://bookdown.org/yihui/bookdown/publishing.html  13.2 404 pages By default, users will be directed to a 404 page if they try to access...">
+<meta name="description" content="13.1 Statistics and Statistical Inference Books Several students have asked for recommendations of resources to improve their background knowledge of statistical inference and modelling. Below are...">
 <meta name="generator" content="bookdown 0.23 with bs4_book()">
 <meta property="og:title" content="Chapter 13 Resources | MLDS Supervised Learning Student Questions">
 <meta property="og:type" content="book">
-<meta property="og:description" content="13.1 Publishing HTML books can be published online, see: https://bookdown.org/yihui/bookdown/publishing.html  13.2 404 pages By default, users will be directed to a 404 page if they try to access...">
+<meta property="og:description" content="13.1 Statistics and Statistical Inference Books Several students have asked for recommendations of resources to improve their background knowledge of statistical inference and modelling. Below are...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 13 Resources | MLDS Supervised Learning Student Questions">
-<meta name="twitter:description" content="13.1 Publishing HTML books can be published online, see: https://bookdown.org/yihui/bookdown/publishing.html  13.2 404 pages By default, users will be directed to a 404 page if they try to access...">
+<meta name="twitter:description" content="13.1 Statistics and Statistical Inference Books Several students have asked for recommendations of resources to improve their background knowledge of statistical inference and modelling. Below are...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -64,21 +64,45 @@
 <h1>
 <span class="header-section-number">13</span> Resources<a class="anchor" aria-label="anchor" href="#resources"><i class="fas fa-link"></i></a>
 </h1>
-<div id="publishing-5" class="section level2" number="13.1">
+<div id="statistics-and-statistical-inference-books" class="section level2" number="13.1">
 <h2>
-<span class="header-section-number">13.1</span> Publishing<a class="anchor" aria-label="anchor" href="#publishing-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.1</span> Statistics and Statistical Inference Books<a class="anchor" aria-label="anchor" href="#statistics-and-statistical-inference-books"><i class="fas fa-link"></i></a>
+</h2>
+<p>Several students have asked for recommendations of resources to improve their background knowledge of statistical inference and modelling. Below are a few options that may or may not be suitable, depeding on your current level and what you are trying to achieve.</p>
+<p>I have given a brief description of the level and target audience of each text. However, a quick skim through a section on a topic that you already know (such as linear regression) is usually the way to assess if the book is going to be a good fit and useful for you.</p>
+<p>If you know of any gems that I have not included in this list, feel free to mention them in the responses!</p>
+<p><strong>Mathematical Statistics and Data analysis - John A. Rice</strong></p>
+<p>This text covers the basics of probability and statistics usually contained in the first couple of undergraduate stats courses. Generally the first university courses are a bit dry, building up the required knowledge to do interesting things. This book is slightly better than the average treatment in terms of readability and is fairly comprehensive, making it well suited as a reference text for all the stuff you might once have known but have now forgotten, or have never studied before.</p>
+<p><strong>Essential medical statistics - Betty Kirkwood and Jonathan Sterne</strong></p>
+<p>This book focuses on more advanced topics in statistisc, such as inference, hypothesis testing and modelling, but does so from an applications perspective. While all of the applications it uses are from medical statistics, the authors give sufficient context that you do not need to be familiar with this context before reading. This is a very readable book, with a moderate amount of mathematical detail.</p>
+<p><strong>Core Statistics - Simon Wood</strong></p>
+<p>This book gives an introduction to the core topics in statistics aimed at new graduate-level students. It is mathematically dense but written in an apprachable manner and (unsurprisingly) covers all the core ideas of statistics. This means that is often a good source to get an overview of a topic and to cover the key points in that area quickly. It is probably wise to supplement this with some readings from a more applied to see worked examples and to have a more detailed text to hand for topics that you need explaining in greater detail.</p>
+<p><strong>In All Likelihood - Yudi Pawitan</strong></p>
+<p>This book focuses entirely on likelihood inference and covers both theory and applications in a great deal of detail. I highly recommend this to supplement frequentist topics covered in core statistics and the elements of statistical learning. It does build up from very little assumed knowledge but also goes on to cover some very advanced topics in later chapters.</p>
+<p><strong>Kendall’s advanced theory of statistics.</strong></p>
+<p>An alternative to In All Likelihood, aimed at a similar audience and level. Split over several volumes this is good to do a deep-dive into a particular topic but probably not one to try and read cover to cover!</p>
+<p><strong>Bayesian Statistics</strong></p>
+<p>You don’t need to worry about these for now, since we are only considering frequentist approaches to inference in this course. However, I would be remiss to not include some Bayesian texts and leave you with the impression that classical or frequentist approaches to statistics are the only option. Many of the topics we cover can be considered from a Bayesian perspective, where instead of considering our model parameters as fixed and unknown quantities, we instead consider them as random variables and use probability distributions to describe our beliefs about their values.</p>
+<p>The following books may be useful during or after the Bayesian inference course. The former is more theoretical and the latter is more applied.</p>
+<p><em>Kendall’s advanced theory of statistics. Vol. 2B, Bayesian inference.</em></p>
+<p><em>Bayesian Data Analysis - Gelman et al.</em></p>
+<hr>
+</div>
+<div id="publishing-5" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> Publishing<a class="anchor" aria-label="anchor" href="#publishing-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>HTML books can be published online, see: <a href="https://bookdown.org/yihui/bookdown/publishing.html" class="uri">https://bookdown.org/yihui/bookdown/publishing.html</a></p>
 </div>
-<div id="pages-5" class="section level2" number="13.2">
+<div id="pages-5" class="section level2" number="13.3">
 <h2>
-<span class="header-section-number">13.2</span> 404 pages<a class="anchor" aria-label="anchor" href="#pages-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.3</span> 404 pages<a class="anchor" aria-label="anchor" href="#pages-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you’d like to customize your 404 page instead of using the default, you may add either a <code>_404.Rmd</code> or <code>_404.md</code> file to your project root and use code and/or Markdown syntax.</p>
 </div>
-<div id="metadata-for-sharing-5" class="section level2" number="13.3">
+<div id="metadata-for-sharing-5" class="section level2" number="13.4">
 <h2>
-<span class="header-section-number">13.3</span> Metadata for sharing<a class="anchor" aria-label="anchor" href="#metadata-for-sharing-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.4</span> Metadata for sharing<a class="anchor" aria-label="anchor" href="#metadata-for-sharing-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the <code>index.Rmd</code> YAML. To setup, set the <code>url</code> for your book and the path to your <code>cover-image</code> file. Your book’s <code>title</code> and <code>description</code> are also used.</p>
 <p>This <code>bs4_book</code> provides enhanced metadata for social sharing, so that each chapter shared will have a unique description, auto-generated based on the content.</p>
@@ -97,9 +121,10 @@
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#resources"><span class="header-section-number">13</span> Resources</a></li>
-<li><a class="nav-link" href="#publishing-5"><span class="header-section-number">13.1</span> Publishing</a></li>
-<li><a class="nav-link" href="#pages-5"><span class="header-section-number">13.2</span> 404 pages</a></li>
-<li><a class="nav-link" href="#metadata-for-sharing-5"><span class="header-section-number">13.3</span> Metadata for sharing</a></li>
+<li><a class="nav-link" href="#statistics-and-statistical-inference-books"><span class="header-section-number">13.1</span> Statistics and Statistical Inference Books</a></li>
+<li><a class="nav-link" href="#publishing-5"><span class="header-section-number">13.2</span> Publishing</a></li>
+<li><a class="nav-link" href="#pages-5"><span class="header-section-number">13.3</span> 404 pages</a></li>
+<li><a class="nav-link" href="#metadata-for-sharing-5"><span class="header-section-number">13.4</span> Metadata for sharing</a></li>
 </ul>
 
       <div class="book-extra">
