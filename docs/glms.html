@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 6 GLMs | MLDS Supervised Learning Student Questions</title>
+<meta name="author" content="Zak Varty">
+<meta name="description" content="6.1 IRWLS  6.1.1 Question Hi! I have two questions related to the IRWLS method (and another unrelated question): The picture below is a screenshot of the slides  Figure 6.1: Exerpt from lecture...">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="Chapter 6 GLMs | MLDS Supervised Learning Student Questions">
+<meta property="og:type" content="book">
+<meta property="og:description" content="6.1 IRWLS  6.1.1 Question Hi! I have two questions related to the IRWLS method (and another unrelated question): The picture below is a screenshot of the slides  Figure 6.1: Exerpt from lecture...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 6 GLMs | MLDS Supervised Learning Student Questions">
+<meta name="twitter:description" content="6.1 IRWLS  6.1.1 Question Hi! I have two questions related to the IRWLS method (and another unrelated question): The picture below is a screenshot of the slides  Figure 6.1: Exerpt from lecture...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">MLDS Supervised Learning Student Questions</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> About</a></li>
+<li><a class="" href="supervised-learning-fundamentals.html"><span class="header-section-number">2</span> Supervised Learning Fundamentals</a></li>
+<li><a class="" href="linear-regression.html"><span class="header-section-number">3</span> Linear Regression</a></li>
+<li><a class="" href="classification-i.html"><span class="header-section-number">4</span> Classification I</a></li>
+<li><a class="" href="classification-ii.html"><span class="header-section-number">5</span> Classification II</a></li>
+<li><a class="active" href="glms.html"><span class="header-section-number">6</span> GLMs</a></li>
+<li><a class="" href="resampling-and-model-selection.html"><span class="header-section-number">7</span> Resampling and Model Selection</a></li>
+<li><a class="" href="tree-based-methods.html"><span class="header-section-number">8</span> Tree-based Methods</a></li>
+<li><a class="" href="regularisation-and-pcr.html"><span class="header-section-number">9</span> Regularisation and PCR</a></li>
+<li><a class="" href="non-parametric-regression.html"><span class="header-section-number">10</span> Non-parametric Regression</a></li>
+<li><a class="" href="svm-and-kernel-methods.html"><span class="header-section-number">11</span> SVM and Kernel Methods</a></li>
+<li><a class="" href="writing-reports.html"><span class="header-section-number">12</span> Writing Reports</a></li>
+<li><a class="" href="resources.html"><span class="header-section-number">13</span> Resources</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="glms" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> GLMs<a class="anchor" aria-label="anchor" href="#glms"><i class="fas fa-link"></i></a>
+</h1>
+<hr>
+<div id="irwls" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> IRWLS<a class="anchor" aria-label="anchor" href="#irwls"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-7" class="section level3" number="6.1.1">
+<h3>
+<span class="header-section-number">6.1.1</span> Question<a class="anchor" aria-label="anchor" href="#question-7"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hi!</p>
+<p>I have two questions related to the IRWLS method (and another unrelated question):</p>
+<ol style="list-style-type: decimal">
+<li>The picture below is a screenshot of the slides</li>
+</ol>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:irwls-question-maths"></span>
+<img src="img/05-glm/IRWLS_question_img_1.png" alt="Exerpt from lecture slides." width="80%"><p class="caption">
+Figure 6.1: Exerpt from lecture slides
+</p>
+</div>
+<p>I have written down the equation and in my results <span class="math inline">\(\Sigma_{ii}\)</span> follows the formula below (the reciprocal of the slides):</p>
+<p><span class="math display">\[ \Sigma_{ii}=\left(\frac{\partial h}{\partial\mu_i}\right)^2\phi\nu_i \]</span>
+I have repeated the calculation multiple times but keep getting the same derivative. Would you mind checking whether this is correct?</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>After manually calculating the Poisson regression as requested in the lab, I have re-implemented IRWLS method for the Bernoulli distribution (doing all the steps, calculating the derivatives and iterating to find the <span class="math inline">\(\beta\)</span>s). I also checked the results and they match those given by <code>glm</code> in R for <code>family=binomial(link="logit")</code>. Is there a historical reason (or any other reason) why <code>glm</code> refers to this type of regression as “binomial” instead of “bernoulli”?</p></li>
+<li><p>Do you have any recommendation for a good reference (or even a blog post) where to read something more about the difference between confidence and prediction intervals?</p></li>
+</ol>
+<p>Thank you in advance.</p>
+</div>
+<div id="response-8" class="section level3" number="6.1.2">
+<h3>
+<span class="header-section-number">6.1.2</span> Response<a class="anchor" aria-label="anchor" href="#response-8"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li><p>you are absolutely correct - this is a typo in the slides and should be the partial of <span class="math inline">\(h\)</span> with respect to <span class="math inline">\(\mu_i\)</span>. Apologies for not spotting that while presenting or editing!</p></li>
+<li><p>the Bernoulli(p) distribution is a special case of the Binomial(n, p) distribution where <span class="math inline">\(n=1\)</span>. The R function deals with the more general case of a Binomial GLM. By assuming that the user knows this relationship, the programmer does not need to implement, debug and maintain a whole other function just for the special case of Bernoulli regression (which using the default link is a logistic regression).</p></li>
+<li><p>I don’t have a good source to hand but will have a look and try to get back to you later in the week.</p></li>
+</ol>
+<p>The general idea is that a confidence interval describes our uncertainty about model parameters under a given model. A prediction interval, on the other hand, describes our uncertainty about a future outcome.</p>
+</div>
+<div id="follow-up-question" class="section level3" number="6.1.3">
+<h3>
+<span class="header-section-number">6.1.3</span> Follow-up Question<a class="anchor" aria-label="anchor" href="#follow-up-question"><i class="fas fa-link"></i></a>
+</h3>
+<p>Thanks very much for the answers! They help a lot!</p>
+<p>Regarding point 3, I would think then something like this should allow for the calculation of the prediction intervals (please correct me if I make any mistakes).</p>
+<p>Step 1) Fit model to data set -&gt; <code>model_1</code></p>
+<p>Step 2) Sample from the multivariate normal distribution of the parameters (classic monte carlo for CIs)</p>
+<p>Step 3) From Step 2) we obtain a point estimate <span class="math inline">\(\hat{\lambda}\)</span> for the mean response of Poisson distribution. For each point estimate, we sample <span class="math inline">\(n\)</span> times from the Poisson having as first moment the values in Step 2</p>
+<p>Step 4) We take the 5% and 95% quantiles to build the upper and lower bounds of the prediction intervals.</p>
+<p>As you explained, the prediction intervals should be “larger” than the confidence intervals as the latter do not take into account the variability in the responses. I am getting something like:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:irwls-question-conf-int"></span>
+<img src="img/05-glm/IRWLS_question_img_2.png" alt="Confidence Interval Plot." width="80%"><p class="caption">
+Figure 6.2: Confidence Interval Plot
+</p>
+</div>
+<p>For the 95% confidence interval of the model and:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:irwls-question-pred-int"></span>
+<img src="img/05-glm/IRWLS_question_img_3.png" alt="Prediction Interval Plot." width="80%"><p class="caption">
+Figure 6.3: Prediction Interval Plot
+</p>
+</div>
+<p>For the prediction intervals. I am a bit concerned about the fact that so many points lie outside the prediction interval though. Is the procedure I have described flawed?</p>
+</div>
+<div id="follow-up-response" class="section level3" number="6.1.4">
+<h3>
+<span class="header-section-number">6.1.4</span> Follow-Up Response<a class="anchor" aria-label="anchor" href="#follow-up-response"><i class="fas fa-link"></i></a>
+</h3>
+<p>This uncertainty is going to have two sources. Firstly, that the outcomes are inherently stochastic (e.g are Poisson distributed) so even if we knew the true model parameters there would be variation in the new value we are trying to predict. Secondly, we don’t know those parameters for sure, we have had to estimate them. A prediction interval should account for both of these sources of uncertainty. This often requires the use of simulation to construct monte-carlo prediction intervals.</p>
+<p>(Note: we also have uncertainty about whether that Poisson model we are assuming is correct, but let’s not worry about that now.)</p>
+<p>I hope that helps - I’m happy to go into more detail in the live sessions later this week.</p>
+<p>At a high-level this seems to be correct, there are just a few things I wanted to comment on.</p>
+<ul>
+<li><p>A small, technical point. Although you can simulate n values of y for each lambda estimate, you only actually need to take 1. This is a little unintuitive but is essentially because in a prediction interval we are interested in the combination of parameter uncertainty and sampling variability of the new observation. It therefore makes better use of our computational budget to push more samples all the way through than to repeatedly simulate using the same estimated lambda values.</p></li>
+<li><p>It does not in general make sense to compare the widths of CIs and prediction intervals in this way, since our parameters and outcomes are not usually on the same scale (though for a Poisson they are). You are on to the right idea here though, that a confidence interval for the expected value of a new outcome is going to be narrower than a prediction interval for that new outcome. (There is also the similar point, unrelated, point to make here that prediction intervals including parameter uncertainty are wider than those assuming that the point estimate is correct.)</p></li>
+<li><p>You are right to be concerned that so many point lie outside the prediction interval this suggests that there is some additional source of variability in our data that we are not modelling. (Hopefully that is enough of a hint to get you started in the right direction!)</p></li>
+</ul>
+<hr>
+</div>
+</div>
+<div id="centering-predictors-in-glms" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Centering Predictors in GLMs<a class="anchor" aria-label="anchor" href="#centering-predictors-in-glms"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-8" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> Question<a class="anchor" aria-label="anchor" href="#question-8"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the last video from this week, in pre-processing the cloth data, why did you center the predictor cloth length? Is it purely for ease of interpretation of the parameters later on or is there something else that I missed?</p>
+</div>
+<div id="response-9" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> Response<a class="anchor" aria-label="anchor" href="#response-9"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are a couple of reasons (I’m sure there are more, but let’s stick with the main two).</p>
+<p>Firstly, yes ease of interpreteation is important here - if we did not center cloth length then <span class="math inline">\(\exp(\beta_0)\)</span> would have the interpretation of the expected number of defects in a cloth of length 0m. Using the centered length it gives us the expected number of of defects in a cloth of average length, something we actually care about. (I mention this in the lab solutions)</p>
+<p>Secondly, it makes our inference process easier. Centering the predictor helps to separate or “orthogonalise” the effects slope and intercept parameters, thereby reducing the covariance between the corresponding parameter estimates. This reduces how much our uncertainty in one parameter changes based on the estimated value of the other parameter. When parameters a re fully orthogonal, our uncertainty in one is not effected at all by the value of the other.</p>
+<p>In terms of the variance matrix <span class="math inline">\(\text{Var}(\mathbf{\beta})\)</span>, this centering of the covariate reduces the size of the off-diagonal terms. This means that our uncertainty about the slope does not impact our uncertainty about the intercept quite so much, and vice-versa. The benefits of this can be seen most clearly if we consider the variance of our estimated linear predictor for a cloth of length <span class="math inline">\(a\)</span>:</p>
+<p><span class="math display">\[\text{Var}(\hat \beta_0 + a \hat \beta_1) = \text{Var}(\hat \beta_0) + a^2 \text{Var}(\hat \beta_2) + 2a \text{Cov}(\hat \beta_0, \hat \beta_1)\]</span></p>
+<p>This is going to be smaller if we can use a centered covariate so that there is less dependence between the parameter estimates.</p>
+</div>
+<div id="follow-up-question-1" class="section level3" number="6.2.3">
+<h3>
+<span class="header-section-number">6.2.3</span> Follow-up Question<a class="anchor" aria-label="anchor" href="#follow-up-question-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Thanks. However, I’m not sure if I understand the second point that you are making. Can you elaborate what exactly you mean by “centering the predictor helps to separate or orthogonalise the effects slope and intercept parameters”? Am I right to say that with a centered predictor, since the intercept (exp of) is the expected value of <span class="math inline">\(y\)</span> at the average <span class="math inline">\(x\)</span>, the variance is at its smallest, and is almost independent of the slope?</p>
+<p>Moreover, centering is not a required step but rather a convenient “nice-to-have”, yes?</p>
+</div>
+<div id="follow-up-response-1" class="section level3" number="6.2.4">
+<h3>
+<span class="header-section-number">6.2.4</span> Follow-up Response<a class="anchor" aria-label="anchor" href="#follow-up-response-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Yes, you are right to say that centered predictor makes <span class="math inline">\(\hat \beta_0\)</span> and <span class="math inline">\(\hat \beta_1\)</span> almost independent (or at least less dependent than when using the raw covariate).</p>
+<p>You can see this more clearly for linear regression in the diagram below. If our covariate takes large values then even a small change in slope will lead to a large change in intercept when using the raw covariate. When using the centered version of the covariate this dependence is much reduced.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:centering-diagram"></span>
+<img src="img/05-glm/centering_diagram.jpg" alt="Schematic plot showing the effect of centering on the dependence between parameter estimates." width="80%"><p class="caption">
+Figure 6.4: Schematic plot showing the effect of centering on the dependence between parameter estimates.
+</p>
+</div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="classification-ii.html"><span class="header-section-number">5</span> Classification II</a></div>
+<div class="next"><a href="resampling-and-model-selection.html"><span class="header-section-number">7</span> Resampling and Model Selection</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#glms"><span class="header-section-number">6</span> GLMs</a></li>
+<li>
+<a class="nav-link" href="#irwls"><span class="header-section-number">6.1</span> IRWLS</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-7"><span class="header-section-number">6.1.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-8"><span class="header-section-number">6.1.2</span> Response</a></li>
+<li><a class="nav-link" href="#follow-up-question"><span class="header-section-number">6.1.3</span> Follow-up Question</a></li>
+<li><a class="nav-link" href="#follow-up-response"><span class="header-section-number">6.1.4</span> Follow-Up Response</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#centering-predictors-in-glms"><span class="header-section-number">6.2</span> Centering Predictors in GLMs</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-8"><span class="header-section-number">6.2.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-9"><span class="header-section-number">6.2.2</span> Response</a></li>
+<li><a class="nav-link" href="#follow-up-question-1"><span class="header-section-number">6.2.3</span> Follow-up Question</a></li>
+<li><a class="nav-link" href="#follow-up-response-1"><span class="header-section-number">6.2.4</span> Follow-up Response</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/05-glm.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/05-glm.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>MLDS Supervised Learning Student Questions</strong>" was written by Zak Varty. It was last built on 2022-03-28.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

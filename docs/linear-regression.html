@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 3 Linear Regression | MLDS Supervised Learning Student Questions</title>
+<meta name="author" content="Zak Varty">
+<meta name="description" content="Questions relating to Week 2: Linear Regression.  3.1 Residual Variance Denominator  3.1.1 Question I found that in literature the residual standard error takes the form of either: \[ \hat...">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="Chapter 3 Linear Regression | MLDS Supervised Learning Student Questions">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Questions relating to Week 2: Linear Regression.  3.1 Residual Variance Denominator  3.1.1 Question I found that in literature the residual standard error takes the form of either: \[ \hat...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3 Linear Regression | MLDS Supervised Learning Student Questions">
+<meta name="twitter:description" content="Questions relating to Week 2: Linear Regression.  3.1 Residual Variance Denominator  3.1.1 Question I found that in literature the residual standard error takes the form of either: \[ \hat...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">MLDS Supervised Learning Student Questions</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> About</a></li>
+<li><a class="" href="supervised-learning-fundamentals.html"><span class="header-section-number">2</span> Supervised Learning Fundamentals</a></li>
+<li><a class="active" href="linear-regression.html"><span class="header-section-number">3</span> Linear Regression</a></li>
+<li><a class="" href="classification-i.html"><span class="header-section-number">4</span> Classification I</a></li>
+<li><a class="" href="classification-ii.html"><span class="header-section-number">5</span> Classification II</a></li>
+<li><a class="" href="glms.html"><span class="header-section-number">6</span> GLMs</a></li>
+<li><a class="" href="resampling-and-model-selection.html"><span class="header-section-number">7</span> Resampling and Model Selection</a></li>
+<li><a class="" href="tree-based-methods.html"><span class="header-section-number">8</span> Tree-based Methods</a></li>
+<li><a class="" href="regularisation-and-pcr.html"><span class="header-section-number">9</span> Regularisation and PCR</a></li>
+<li><a class="" href="non-parametric-regression.html"><span class="header-section-number">10</span> Non-parametric Regression</a></li>
+<li><a class="" href="svm-and-kernel-methods.html"><span class="header-section-number">11</span> SVM and Kernel Methods</a></li>
+<li><a class="" href="writing-reports.html"><span class="header-section-number">12</span> Writing Reports</a></li>
+<li><a class="" href="resources.html"><span class="header-section-number">13</span> Resources</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="linear-regression" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Linear Regression<a class="anchor" aria-label="anchor" href="#linear-regression"><i class="fas fa-link"></i></a>
+</h1>
+<p>Questions relating to Week 2: Linear Regression.</p>
+<hr>
+<div id="residual-variance-denominator" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Residual Variance Denominator<a class="anchor" aria-label="anchor" href="#residual-variance-denominator"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-1" class="section level3" number="3.1.1">
+<h3>
+<span class="header-section-number">3.1.1</span> Question<a class="anchor" aria-label="anchor" href="#question-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>I found that in literature the residual standard error takes the form of either:</p>
+<p><span class="math display">\[ \hat \sigma^2 = \sqrt{\frac{\text{RSS}}{n - p}}\]</span></p>
+<p>or</p>
+<p><span class="math display">\[ \hat \sigma = \sqrt{\frac{\text{RSS}}{n - p - 1}}\]</span></p>
+<p>In particular, the first one was introduced in Chris’ video whereas the second is Eq. 3.25 of ISLR.</p>
+<p>Now, I noticed the <span class="math inline">\(F\)</span>-statistic also uses <span class="math inline">\((n-p-1)\)</span> so I used the latter for the lab, but I was wondering whether somebody could explain this difference and whether it is relevant even with <span class="math inline">\(n&gt;&gt;30\)</span>.</p>
+</div>
+<div id="response-1" class="section level3" number="3.1.2">
+<h3>
+<span class="header-section-number">3.1.2</span> Response<a class="anchor" aria-label="anchor" href="#response-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>The reason for the difference with ISLR is just cosmetic: they include the intercept as a separate parameter:<span class="math inline">\((\beta_0, \beta_1, \ldots, \beta_p)\)</span> gives <span class="math inline">\(p+1\)</span> parameters. In the notes, we treat the intercept just like any other parameter, corresponding to the first column of the design matrix. This means we have <span class="math inline">\(p\)</span> parameters.</p>
+<p>A different point, and not what is going on here, is the fact that often the maximum likelihood estimator of a variance parameter is biased, and in some applications an unbiased estimator is preferred. e.g. if we have</p>
+<p><span class="math display">\[ X_1,\ldots, X_n \sim N(\mu, \sigma^2)\]</span></p>
+<p>then the maximum likelihood estimator for the variance is</p>
+<p><span class="math display">\[ \frac{1}{n} \sum_{i = 1}^{n} (X_i - \bar X)^2,\]</span></p>
+<p>but for an unbiased estimator - one that is right in expectation - we need</p>
+<p><span class="math display">\[ \frac{1}{n-1} \sum_{i = 1}^{n} (X_i - \bar X)^2,\]</span></p>
+<p>Generally if your sample is small enough that these are materially different, you probably have bigger things to worry about. But this is ultimately related to the bias-variance trade-off we have discussed.</p>
+<hr>
+</div>
+</div>
+<div id="lab-2-differentiation" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Lab 2 Differentiation<a class="anchor" aria-label="anchor" href="#lab-2-differentiation"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-2" class="section level3" number="3.2.1">
+<h3>
+<span class="header-section-number">3.2.1</span> Question<a class="anchor" aria-label="anchor" href="#question-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Lab 2, Section 1.2, I understand that for the purpose of finding the stationary points of the gradient the sign is not relevant, but shouldn’t there be a - before the 2 in the equation below?</p>
+<p><span class="math display">\[ \nabla S(\beta) = 2 X^T(y - X\beta) = 0.\]</span></p>
+</div>
+<div id="response-2" class="section level3" number="3.2.2">
+<h3>
+<span class="header-section-number">3.2.2</span> Response<a class="anchor" aria-label="anchor" href="#response-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Thanks for this, yes you are right!</p>
+<hr>
+</div>
+</div>
+<div id="unbiasedness-of-least-squares-regression" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Unbiasedness of Least Squares Regression<a class="anchor" aria-label="anchor" href="#unbiasedness-of-least-squares-regression"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-3" class="section level3" number="3.3.1">
+<h3>
+<span class="header-section-number">3.3.1</span> Question<a class="anchor" aria-label="anchor" href="#question-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>During reading the textbook (ESL page 52) about linear regression I encountered an interesting point: the Gauss-Markov brings the good property of BLUE for Least Squares estimate, yet it seems to be not the best linear model choice for practical prediction task due to bias variance tradeoff. (Figure <a href="linear-regression.html#fig:esl-lsr-quote">3.1</a>)</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:esl-lsr-quote"></span>
+<img src="img/esl_screenshot.png" alt="Exerpt of page 52 of Elements of Statistical Learning." width="80%"><p class="caption">
+Figure 3.1: Exerpt from Elements of Satistical Learning
+</p>
+</div>
+<p>I understand that when the data are noisy (i.e., break some of the Gauss-Markov assumptions), Least Squares may overfit and do not perform well with high variance.</p>
+<p>However, my question is that does this argument imply that when the data are in good quality (e.g. comply with the required assumptions), Least Squares estimate may still not perform well out-of-sample due to high variance?</p>
+<p>Overall, it seems the supervised leaning shrugs off the unbiasedness property. What is the practical value to be an <strong>unbiased</strong> estimator? Is it all for the inference purpose?</p>
+</div>
+<div id="response-3" class="section level3" number="3.3.2">
+<h3>
+<span class="header-section-number">3.3.2</span> Response<a class="anchor" aria-label="anchor" href="#response-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>I will try to address your questions in reverse order.</p>
+<p>Using an unbiased estimator is often a good thing to because it gives us the assurance that if we were to collect larger and larger data sets (assuming our true data generating process can be represented by our chosen class of models), then our parameter estimates would converge to the true values. This is clearly a good property for our estimator to have.</p>
+<p>However, if we inisit that our estimators must be unbiased then we are restricting ourselves in some way. By allowing some small amount of bias we may be able to make better predictions but this comes at the cost of knowing that as we collect more and more data we would not uncover the true data generating process with our model (even if it can be represented in our model class).</p>
+<hr>
+</div>
+</div>
+<div id="linear-regression-assumptions" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> Linear Regression Assumptions<a class="anchor" aria-label="anchor" href="#linear-regression-assumptions"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-4" class="section level3" number="3.4.1">
+<h3>
+<span class="header-section-number">3.4.1</span> Question<a class="anchor" aria-label="anchor" href="#question-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hi, to better understand the linear regression residual diagnosis, during the study of textbook and lab materials I collect some mentioned assumptions and get some follow-up questions. Look forward to answers, thanks a lot!</p>
+<p>Below are the listed assumptions in the order of importance:</p>
+<ol style="list-style-type: decimal">
+<li>Linear additive true mode exists between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>, <span class="math inline">\(X\)</span> is non-random and identifiable (this may be trivial, more as formulation); 1. Zero expected mean of error terms;</li>
+<li>Constant variance of errors;<br>
+</li>
+<li>Errors are uncorrelated to each other;</li>
+<li>Errors are i.i.d.;</li>
+<li>Errors are normally distributed;</li>
+<li>Features should not be highly multi-collinear (this is not a mandatory assumption).</li>
+</ol>
+<p>First of all, to make the least squares to be unbiased estimator (based on the derivation in Lab 2), it seems we only need assumption 1 and 2?</p>
+<p>Next, assumptions 1+2+3+4 are good enough to make the least squares to be BLUE. Then what about the value of <strong>assumptions 5 and 6</strong>? ISLR textbook seems to allude to the statistical inference purpose, however, based on the Central Limit Theorem, won’t the Normality assumption 6 look unnecessary apart from sample efficiency? It looks like only the property that least squares is MLE introduced in Lab2 requires all the assumptions 1 to 6.</p>
+<p>Lastly, the <strong>multi-collinearity</strong> issue increases the standard error of coefficient for correlated features, thus harming the statistical inference (according to ISLR), yet the model is still unbiased and BLUE/MLE so long as other assumptions hold. How will multi-collinearity impact the <strong>prediction</strong> then? It will potentially increase the prediction variance and so can harm the overall prediction ability (i.e. MSE) as well?</p>
+</div>
+<div id="response-4" class="section level3" number="3.4.2">
+<h3>
+<span class="header-section-number">3.4.2</span> Response<a class="anchor" aria-label="anchor" href="#response-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>For your first question. Yes, only 1 and 2 are required: to see this we can to show that <span class="math inline">\(\mathbb{E}[\hat \beta_i] = \beta_i\)</span> for all coefficients.</p>
+<p>For your second question, 2-4 put assumptions on the first two moments of the errors but they may have different distributions that achieve these equal moments. In 5 and 6 we are additionally assuming that the entire distribution of the errors are equal and that this distribution is a Gaussian distribution. Without these assumptions we know that the parameter estimates (and therefore predictions) have a sampling distribution that is also Gaussian in the limit as n becomes large, but for finite sample sizes we don’t know the distribution. We then use the CLT to motivate a Gaussian approximation of this unknown distribution. By making these additional assumptions, we don’t have to make an approximation: the sampling distribution is exactly Gaussian for finite sample sizes as well as being true in the limit.</p>
+<p>For your final question, you have gone most of the way to an answer yourself. If including colinear predictors in our model increases the standard errors of the parameter estimates then it will also increase the standard errors of our predictions, since these are simply a linear combination of the estimated parameters.</p>
+<hr>
+<!-- There are two steps to cross-reference any heading:
+
+1. Label the heading: `# Hello world {#nice-label}`. 
+    - Leave the label off if you like the automated heading generated based on your heading title: for example, `# Hello world` = `# Hello world {#hello-world}`.
+    - To label an un-numbered heading, use: `# Hello world {-#nice-label}` or `{# Hello world .unnumbered}`.
+
+1. Next, reference the labeled heading anywhere in the text using `\@ref(nice-label)`; for example, please see Chapter \@ref(cross). 
+    - If you prefer text as the link instead of a numbered reference use: [any text you want can go here](#cross).
+
+## Captioned figures and tables
+
+Figures and tables *with captions* can also be cross-referenced from elsewhere in your book using `\@ref(fig:chunk-label)` and `\@ref(tag:chunk-label)`, respectively.
+
+See Figure \@ref(fig:nice-fig).
+
+
+```r
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+<div class="figure" style="text-align: center">
+<img src="02-linear-regression_files/figure-html/nice-fig-1.png" alt="Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases." width="80%" />
+<p class="caption">(\#fig:nice-fig)Here is a nice figure!</p>
+</div>
+
+Don't miss Table \@ref(tab:nice-tab).
+
+
+```r
+knitr::kable(
+  head(pressure, 10), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+
+
+Table: (\#tab:nice-tab)Here is a nice table!
+
+| temperature| pressure|
+|-----------:|--------:|
+|           0|   0.0002|
+|          20|   0.0012|
+|          40|   0.0060|
+|          60|   0.0300|
+|          80|   0.0900|
+|         100|   0.2700|
+|         120|   0.7500|
+|         140|   1.8500|
+|         160|   4.2000|
+|         180|   8.8000|
+-->
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="supervised-learning-fundamentals.html"><span class="header-section-number">2</span> Supervised Learning Fundamentals</a></div>
+<div class="next"><a href="classification-i.html"><span class="header-section-number">4</span> Classification I</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#linear-regression"><span class="header-section-number">3</span> Linear Regression</a></li>
+<li>
+<a class="nav-link" href="#residual-variance-denominator"><span class="header-section-number">3.1</span> Residual Variance Denominator</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-1"><span class="header-section-number">3.1.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-1"><span class="header-section-number">3.1.2</span> Response</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#lab-2-differentiation"><span class="header-section-number">3.2</span> Lab 2 Differentiation</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-2"><span class="header-section-number">3.2.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-2"><span class="header-section-number">3.2.2</span> Response</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#unbiasedness-of-least-squares-regression"><span class="header-section-number">3.3</span> Unbiasedness of Least Squares Regression</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-3"><span class="header-section-number">3.3.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-3"><span class="header-section-number">3.3.2</span> Response</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#linear-regression-assumptions"><span class="header-section-number">3.4</span> Linear Regression Assumptions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-4"><span class="header-section-number">3.4.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-4"><span class="header-section-number">3.4.2</span> Response</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/02-linear-regression.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/02-linear-regression.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>MLDS Supervised Learning Student Questions</strong>" was written by Zak Varty. It was last built on 2022-03-28.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

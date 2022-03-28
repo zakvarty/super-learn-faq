@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Classification I | MLDS Supervised Learning Student Questions</title>
+<meta name="author" content="Zak Varty">
+<meta name="description" content="Questions relating to Week 2: Linear Regression.  4.1 Slides 3.3  4.1.1 Announcement Please note the slight inconsistency here: in the typed slides I say we will consider 1 covariate and an...">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Classification I | MLDS Supervised Learning Student Questions">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Questions relating to Week 2: Linear Regression.  4.1 Slides 3.3  4.1.1 Announcement Please note the slight inconsistency here: in the typed slides I say we will consider 1 covariate and an...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Classification I | MLDS Supervised Learning Student Questions">
+<meta name="twitter:description" content="Questions relating to Week 2: Linear Regression.  4.1 Slides 3.3  4.1.1 Announcement Please note the slight inconsistency here: in the typed slides I say we will consider 1 covariate and an...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">MLDS Supervised Learning Student Questions</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> About</a></li>
+<li><a class="" href="supervised-learning-fundamentals.html"><span class="header-section-number">2</span> Supervised Learning Fundamentals</a></li>
+<li><a class="" href="linear-regression.html"><span class="header-section-number">3</span> Linear Regression</a></li>
+<li><a class="active" href="classification-i.html"><span class="header-section-number">4</span> Classification I</a></li>
+<li><a class="" href="classification-ii.html"><span class="header-section-number">5</span> Classification II</a></li>
+<li><a class="" href="glms.html"><span class="header-section-number">6</span> GLMs</a></li>
+<li><a class="" href="resampling-and-model-selection.html"><span class="header-section-number">7</span> Resampling and Model Selection</a></li>
+<li><a class="" href="tree-based-methods.html"><span class="header-section-number">8</span> Tree-based Methods</a></li>
+<li><a class="" href="regularisation-and-pcr.html"><span class="header-section-number">9</span> Regularisation and PCR</a></li>
+<li><a class="" href="non-parametric-regression.html"><span class="header-section-number">10</span> Non-parametric Regression</a></li>
+<li><a class="" href="svm-and-kernel-methods.html"><span class="header-section-number">11</span> SVM and Kernel Methods</a></li>
+<li><a class="" href="writing-reports.html"><span class="header-section-number">12</span> Writing Reports</a></li>
+<li><a class="" href="resources.html"><span class="header-section-number">13</span> Resources</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="classification-i" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Classification I<a class="anchor" aria-label="anchor" href="#classification-i"><i class="fas fa-link"></i></a>
+</h1>
+<p>Questions relating to Week 2: Linear Regression.</p>
+<hr>
+<div id="slides-3.3" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Slides 3.3<a class="anchor" aria-label="anchor" href="#slides-3.3"><i class="fas fa-link"></i></a>
+</h2>
+<div id="announcement" class="section level3" number="4.1.1">
+<h3>
+<span class="header-section-number">4.1.1</span> Announcement<a class="anchor" aria-label="anchor" href="#announcement"><i class="fas fa-link"></i></a>
+</h3>
+<p>Please note the slight inconsistency here: in the typed slides I say we will consider 1 covariate and an intercept but in my speaking and hand-written maths I consider the case of two covariates and an intercept.</p>
+<hr>
+</div>
+</div>
+<div id="definition-of-distributions-in-labs" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Definition of distributions in Labs<a class="anchor" aria-label="anchor" href="#definition-of-distributions-in-labs"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-5" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> Question<a class="anchor" aria-label="anchor" href="#question-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>I am trying to figure out how to go from the distributions above to the class definitions below. It seems like the diagonal terms of the covariance matrix are different. In particular, for <span class="math inline">\(Y=2\)</span> and <span class="math inline">\(Y=3\)</span> we should have some stretch among <span class="math inline">\(x_1\)</span> and and <span class="math inline">\(x_2\)</span> axis, but the second distribution in the code simply looks like a translated normal. Could you provide an explanation?</p>
+<p>`` In class 1, we’ll let <span class="math inline">\(X\)</span> have the standard normal distribution … ’’</p>
+</div>
+<div id="response-5" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> Response<a class="anchor" aria-label="anchor" href="#response-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hi, this seems like a typo that snuck through lab development. Thanks for pointing it out!</p>
+<p>Code to match stated distributions:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># make standard normal</span>
+<span class="va">x</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">n</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># make class 2</span>
+<span class="va">x</span><span class="op">[</span><span class="va">y</span> <span class="op">==</span> <span class="fl">2</span>, <span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="op">+</span> <span class="va">x</span><span class="op">[</span><span class="va">y</span> <span class="op">==</span> <span class="fl">2</span>, <span class="op">]</span> <span class="op">%*%</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># make class 3</span>
+<span class="va">x</span><span class="op">[</span><span class="va">y</span> <span class="op">==</span> <span class="fl">3</span>, <span class="op">]</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">10</span> <span class="op">+</span> <span class="va">x</span><span class="op">[</span><span class="va">y</span> <span class="op">==</span> <span class="fl">3</span>, <span class="op">]</span> <span class="op">%*%</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,<span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>,col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"orange"</span>,<span class="st">"blue"</span>,<span class="st">"green"</span><span class="op">)</span><span class="op">[</span><span class="va">y</span><span class="op">]</span>, asp <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<p>Distributions to match given code:</p>
+<p><span class="math display">\[ X\ |\ Y_{ }=2\ \sim N\left(\left(\begin{matrix}10\\10\end{matrix}\right),\left(\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right)\right), \]</span></p>
+<p><span class="math display">\[ X\ |\ Y_{ }=3\ \sim N\left(\left(\begin{matrix}10\\10\end{matrix}\right),\left(\begin{matrix}1&amp;0\\0&amp;16\end{matrix}\right)\right).\]</span></p>
+</div>
+</div>
+<div id="there-is-also-a-missing-sign-after-pry-1-x-x-approx-hat-px-..." class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> There is also a missing <span class="math inline">\(=\)</span> sign after <span class="math inline">\(\Pr(Y = 1 | X = x) \approx \hat p(x) ...\)</span><a class="anchor" aria-label="anchor" href="#there-is-also-a-missing-sign-after-pry-1-x-x-approx-hat-px-..."><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="linear-regression-vs.-lda" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> Linear Regression vs. LDA<a class="anchor" aria-label="anchor" href="#linear-regression-vs.-lda"><i class="fas fa-link"></i></a>
+</h2>
+<div id="queston" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Queston<a class="anchor" aria-label="anchor" href="#queston"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the prelude to the logistic regression section (3.1) in the week 3 lab, it suggests that normally distributed covariates with equal variances in each class form the basis of the logistic regression classifier and that the decision boundary is a straight line.</p>
+<p>However, linear discriminant analysis also assumes that the covariates are normal and there is a shared variance term across all classes, and the decision boundary is also a straight line. Furthermore, the derivations for the two classifiers both build upon Bayes’ theorem and the log-likelihood.</p>
+<p>So, I wonder what the difference is between the two classifiers? And if/how do they perform differently on a dataset?</p>
+</div>
+<div id="response-6" class="section level3" number="4.4.2">
+<h3>
+<span class="header-section-number">4.4.2</span> Response<a class="anchor" aria-label="anchor" href="#response-6"><i class="fas fa-link"></i></a>
+</h3>
+<p>Good question, since with two categories the two methods can appear very similar. The two methods present two different approaches to the same problem.</p>
+<p>Logistic regression describes the conditional distribution of <span class="math inline">\(Y|X=x\)</span> as Bernoulli. One motivation for using the logistic function (over e.g. probit) is that it yields nice properties when <span class="math inline">\(X\sim \text{MVN}\)</span>. We saw another motivation in the videos, where we considered functions which map our parameters to <span class="math inline">\((0,1)\)</span>. The distributional assumption on X is not a core part of the method in logistic regression.</p>
+<p>Conversely, LDA assumes <span class="math inline">\(X|Y=y \sim \text{MVN}\)</span> as the basis for its classification method and uses the empirical distribution of <span class="math inline">\(\text{Pr}(Y=y)\)</span> to the distribution of interest: <span class="math inline">\(Y|X=x\)</span>.</p>
+<p>This means that the core assumptions of LDA are broken if we have, for example, a categorical predictor but those of logistic regression are not. On the other hand, if we have more than two possible outcomes, the idea of LDA extends readily (the number of possible values for <span class="math inline">\(y\)</span> increases to 3 or more) but this completely breaks the Bernoulli assumption in logistic regression.</p>
+<p>I hope that helps to point out some of the differences that are not so obvious when considering binary outcomes and real-valued predictors.</p>
+<hr>
+</div>
+</div>
+<div id="logistic-regression-assumptions" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> Logistic Regression Assumptions<a class="anchor" aria-label="anchor" href="#logistic-regression-assumptions"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-6" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Question<a class="anchor" aria-label="anchor" href="#question-6"><i class="fas fa-link"></i></a>
+</h3>
+<p>From reading various literature, in the derivation of the logistic regression function, there is no assumption of any normality at all - is this true? Are the covariates free to have any kind of distribution?</p>
+</div>
+<div id="response-7" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Response<a class="anchor" aria-label="anchor" href="#response-7"><i class="fas fa-link"></i></a>
+</h3>
+<p>Great discussion going on in the comments here. Hopefully my comment in the LR vs LDA question can help clear things up as will our later discussions about generalised linear modelling.</p>
+<p>A couple of points worth repeating here:</p>
+<ul>
+<li>logistic regression does not make assumptions about the marginal distribution of X, but has some nice properties when X ~ MVN.</li>
+<li>logistic regression models the conditional distribution of <span class="math inline">\(Y_i|X_i=x_i\)</span> as Bernoulli(<span class="math inline">\(p_i\)</span>). This is a special case of the Binomial(<span class="math inline">\(n\)</span>, <span class="math inline">\(p_i\)</span>) distribution where n=1.
+-The probability of a “success” for observation <span class="math inline">\(i\)</span>, <span class="math inline">\(p_i\)</span>, is modelled as a (logistic) function of the linear predictor for each outcome, or equivalently the log odds is a linear combination of the predictors.</li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="linear-regression.html"><span class="header-section-number">3</span> Linear Regression</a></div>
+<div class="next"><a href="classification-ii.html"><span class="header-section-number">5</span> Classification II</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#classification-i"><span class="header-section-number">4</span> Classification I</a></li>
+<li>
+<a class="nav-link" href="#slides-3.3"><span class="header-section-number">4.1</span> Slides 3.3</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#announcement"><span class="header-section-number">4.1.1</span> Announcement</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#definition-of-distributions-in-labs"><span class="header-section-number">4.2</span> Definition of distributions in Labs</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-5"><span class="header-section-number">4.2.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-5"><span class="header-section-number">4.2.2</span> Response</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#there-is-also-a-missing-sign-after-pry-1-x-x-approx-hat-px-..."><span class="header-section-number">4.3</span> There is also a missing \(=\) sign after \(\Pr(Y = 1 | X = x) \approx \hat p(x) ...\)</a></li>
+<li>
+<a class="nav-link" href="#linear-regression-vs.-lda"><span class="header-section-number">4.4</span> Linear Regression vs. LDA</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#queston"><span class="header-section-number">4.4.1</span> Queston</a></li>
+<li><a class="nav-link" href="#response-6"><span class="header-section-number">4.4.2</span> Response</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#logistic-regression-assumptions"><span class="header-section-number">4.5</span> Logistic Regression Assumptions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-6"><span class="header-section-number">4.5.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-7"><span class="header-section-number">4.5.2</span> Response</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/03-classification-1-log-reg.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/03-classification-1-log-reg.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>MLDS Supervised Learning Student Questions</strong>" was written by Zak Varty. It was last built on 2022-03-28.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
