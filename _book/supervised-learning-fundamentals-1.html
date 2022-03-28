@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Supervised Learning Fundamentals | MLDS Supervised Learning Student Questions</title>
+<meta name="author" content="Zak Varty">
+<meta name="description" content="Questions relating to Week 1: Supervised Learning Fundamentals.  4.1 Residual Variance Denominator  4.1.1 Question I found that in literature the residual standard error takes the form of either:...">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Supervised Learning Fundamentals | MLDS Supervised Learning Student Questions">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Questions relating to Week 1: Supervised Learning Fundamentals.  4.1 Residual Variance Denominator  4.1.1 Question I found that in literature the residual standard error takes the form of either:...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Supervised Learning Fundamentals | MLDS Supervised Learning Student Questions">
+<meta name="twitter:description" content="Questions relating to Week 1: Supervised Learning Fundamentals.  4.1 Residual Variance Denominator  4.1.1 Question I found that in literature the residual standard error takes the form of either:...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">MLDS Supervised Learning Student Questions</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> About</a></li>
+<li><a class="" href="supervised-learning-fundamentals.html"><span class="header-section-number">2</span> Supervised Learning Fundamentals</a></li>
+<li><a class="" href="cross.html"><span class="header-section-number">3</span> Cross-references</a></li>
+<li><a class="active" href="supervised-learning-fundamentals-1.html"><span class="header-section-number">4</span> Supervised Learning Fundamentals</a></li>
+<li><a class="" href="parts.html"><span class="header-section-number">5</span> Parts</a></li>
+<li><a class="" href="footnotes-and-citations.html"><span class="header-section-number">6</span> Footnotes and citations</a></li>
+<li><a class="" href="blocks.html"><span class="header-section-number">7</span> Blocks</a></li>
+<li><a class="" href="blocks-1.html"><span class="header-section-number">8</span> Blocks</a></li>
+<li><a class="" href="sharing-your-book.html"><span class="header-section-number">9</span> Sharing your book</a></li>
+<li><a class="" href="sharing-your-book-1.html"><span class="header-section-number">10</span> Sharing your book</a></li>
+<li><a class="" href="sharing-your-book-2.html"><span class="header-section-number">11</span> Sharing your book</a></li>
+<li><a class="" href="sharing-your-book-3.html"><span class="header-section-number">12</span> Sharing your book</a></li>
+<li><a class="" href="sharing-your-book-4.html"><span class="header-section-number">13</span> Sharing your book</a></li>
+<li><a class="" href="sharing-your-book-5.html"><span class="header-section-number">14</span> Sharing your book</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="supervised-learning-fundamentals-1" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Supervised Learning Fundamentals<a class="anchor" aria-label="anchor" href="#supervised-learning-fundamentals-1"><i class="fas fa-link"></i></a>
+</h1>
+<p>Questions relating to Week 1: Supervised Learning Fundamentals.</p>
+<hr>
+<div id="residual-variance-denominator" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Residual Variance Denominator<a class="anchor" aria-label="anchor" href="#residual-variance-denominator"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-1" class="section level3" number="4.1.1">
+<h3>
+<span class="header-section-number">4.1.1</span> Question<a class="anchor" aria-label="anchor" href="#question-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>I found that in literature the residual standard error takes the form of either:</p>
+<p><span class="math display">\[ \hat \sigma^2 = \sqrt{\frac{\text{RSS}}{n - p}}\]</span></p>
+<p>or</p>
+<p><span class="math display">\[ \hat \sigma = \sqrt{\frac{\text{RSS}}{n - p - 1}}\]</span></p>
+<p>In particular, the first one was introduced in Chris’ video whereas the second is Eq. 3.25 of ISLR.</p>
+<p>Now, I noticed the <span class="math inline">\(F\)</span>-statistic also uses <span class="math inline">\((n-p-1)\)</span> so I used the latter for the lab, but I was wondering whether somebody could explain this difference and whether it is relevant even with <span class="math inline">\(n&gt;&gt;30\)</span>.</p>
+</div>
+<div id="response-1" class="section level3" number="4.1.2">
+<h3>
+<span class="header-section-number">4.1.2</span> Response<a class="anchor" aria-label="anchor" href="#response-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>The reason for the difference with ISLR is just cosmetic: they include the intercept as a separate parameter:<span class="math inline">\((\beta_0, \beta_1, \ldots, \beta_p)\)</span> gives <span class="math inline">\(p+1\)</span> parameters. In the notes, we treat the intercept just like any other parameter, corresponding to the first column of the design matrix. This means we have <span class="math inline">\(p\)</span> parameters.</p>
+<p>A different point, and not what is going on here, is the fact that often the maximum likelihood estimator of a variance parameter is biased, and in some applications an unbiased estimator is preferred. e.g. if we have</p>
+<p><span class="math display">\[ X_1,\ldots, X_n \sim N(\mu, \sigma^2)\]</span></p>
+<p>then the maximum likelihood estimator for the variance is</p>
+<p><span class="math display">\[ \frac{1}{n} \sum_{i = 1}^{n} (X_i - \bar X)^2,\]</span></p>
+<p>but for an unbiased estimator - one that is right in expectation - we need</p>
+<p><span class="math display">\[ \frac{1}{n-1} \sum_{i = 1}^{n} (X_i - \bar X)^2,\]</span></p>
+<p>Generally if your sample is small enough that these are materially different, you probably have bigger things to worry about. But this is ultimately related to the bias-variance trade-off we have discussed.</p>
+<hr>
+<div class="inline-table"><table class="table table-sm">
+<colgroup><col width="100%"></colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">## A question title</td>
+</tr>
+<tr class="even">
+<td align="left">### Question</td>
+</tr>
+<tr class="odd">
+<td align="left">### Response</td>
+</tr>
+</tbody>
+</table></div>
+<p>There are two steps to cross-reference any heading:</p>
+<ol style="list-style-type: decimal">
+<li>Label the heading: <code># Hello world {#nice-label}</code>.
+<ul>
+<li>Leave the label off if you like the automated heading generated based on your heading title: for example, <code># Hello world</code> = <code># Hello world {#hello-world}</code>.</li>
+<li>To label an un-numbered heading, use: <code># Hello world {-#nice-label}</code> or <code>{# Hello world .unnumbered}</code>.</li>
+</ul>
+</li>
+<li>Next, reference the labeled heading anywhere in the text using <code>\@ref(nice-label)</code>; for example, please see Chapter <a href="cross.html#cross">3</a>.
+<ul>
+<li>If you prefer text as the link instead of a numbered reference use: <a href="cross.html#cross">any text you want can go here</a>.</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="captioned-figures-and-tables" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Captioned figures and tables<a class="anchor" aria-label="anchor" href="#captioned-figures-and-tables"><i class="fas fa-link"></i></a>
+</h2>
+<p>Figures and tables <em>with captions</em> can also be cross-referenced from elsewhere in your book using <code>\@ref(fig:chunk-label)</code> and <code>\@ref(tag:chunk-label)</code>, respectively.</p>
+<p>See Figure <a href="supervised-learning-fundamentals-1.html#fig:nice-fig">4.1</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pressure</span>, type <span class="op">=</span> <span class="st">'b'</span>, pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:nice-fig"></span>
+<img src="02-linear-regression_files/figure-html/nice-fig-1.png" alt="Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases." width="80%"><p class="caption">
+Figure 4.1: Here is a nice figure!
+</p>
+</div>
+<p>Don’t miss Table <a href="supervised-learning-fundamentals-1.html#tab:nice-tab">4.1</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pressure</span>, <span class="fl">10</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">'Here is a nice table!'</span>,
+  booktabs <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:nice-tab">Table 4.1: </span>Here is a nice table!</caption>
+<thead><tr class="header">
+<th align="right">temperature</th>
+<th align="right">pressure</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">0.0002</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">0.0012</td>
+</tr>
+<tr class="odd">
+<td align="right">40</td>
+<td align="right">0.0060</td>
+</tr>
+<tr class="even">
+<td align="right">60</td>
+<td align="right">0.0300</td>
+</tr>
+<tr class="odd">
+<td align="right">80</td>
+<td align="right">0.0900</td>
+</tr>
+<tr class="even">
+<td align="right">100</td>
+<td align="right">0.2700</td>
+</tr>
+<tr class="odd">
+<td align="right">120</td>
+<td align="right">0.7500</td>
+</tr>
+<tr class="even">
+<td align="right">140</td>
+<td align="right">1.8500</td>
+</tr>
+<tr class="odd">
+<td align="right">160</td>
+<td align="right">4.2000</td>
+</tr>
+<tr class="even">
+<td align="right">180</td>
+<td align="right">8.8000</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="cross.html"><span class="header-section-number">3</span> Cross-references</a></div>
+<div class="next"><a href="parts.html"><span class="header-section-number">5</span> Parts</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#supervised-learning-fundamentals-1"><span class="header-section-number">4</span> Supervised Learning Fundamentals</a></li>
+<li>
+<a class="nav-link" href="#residual-variance-denominator"><span class="header-section-number">4.1</span> Residual Variance Denominator</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-1"><span class="header-section-number">4.1.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-1"><span class="header-section-number">4.1.2</span> Response</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#captioned-figures-and-tables"><span class="header-section-number">4.2</span> Captioned figures and tables</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/02-linear-regression.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/02-linear-regression.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>MLDS Supervised Learning Student Questions</strong>" was written by Zak Varty. It was last built on 2022-03-28.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
