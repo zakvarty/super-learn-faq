@@ -56,7 +56,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/zakvarty/super-learn-faq/">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -186,6 +186,101 @@ Figure 6.3: Prediction Interval Plot
 Figure 6.4: Schematic plot showing the effect of centering on the dependence between parameter estimates.
 </p>
 </div>
+<hr>
+</div>
+</div>
+<div id="exponential-family-expectation-of-ty" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Exponential Family: Expectation of <span class="math inline">\(T(Y)\)</span><a class="anchor" aria-label="anchor" href="#exponential-family-expectation-of-ty"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-9" class="section level3" number="6.3.1">
+<h3>
+<span class="header-section-number">6.3.1</span> Question<a class="anchor" aria-label="anchor" href="#question-9"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hi, I cannot quite get to the same result shown here:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:exp-fam-ET-1"></span>
+<img src="img/05-glm/exp_fam_ET.png" alt="Derivation of $E[T(Y)]$." width="80%"><p class="caption">
+Figure 6.5: Derivation of <span class="math inline">\(E[T(Y)]\)</span>.
+</p>
+</div>
+<p>If I try to prove it, I find myself with the derivative of <span class="math inline">\(\eta\)</span> surviving:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:exp-fam-ET-2"></span>
+<img src="img/05-glm/exp_fam_ET_2.png" alt="Alternative derivation of $E[T(Y)]$." width="80%"><p class="caption">
+Figure 6.6: Alternative derivation of <span class="math inline">\(E[T(Y)]\)</span>.
+</p>
+</div>
+</div>
+<div id="response-10" class="section level3" number="6.3.2">
+<h3>
+<span class="header-section-number">6.3.2</span> Response<a class="anchor" aria-label="anchor" href="#response-10"><i class="fas fa-link"></i></a>
+</h3>
+<p>Well spotted, I may have misspoken on in the recording.</p>
+<p>Your derivation is correct in the general exponential family case and then if we use the canonical parameterisation, so that <span class="math inline">\(\eta(\theta) = \theta\)</span>, then your extra term is, giving the stated result.</p>
+<hr>
+</div>
+</div>
+<div id="gradient-descent-and-irwls" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Gradient Descent and IRWLS<a class="anchor" aria-label="anchor" href="#gradient-descent-and-irwls"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-10" class="section level3" number="6.4.1">
+<h3>
+<span class="header-section-number">6.4.1</span> Question<a class="anchor" aria-label="anchor" href="#question-10"><i class="fas fa-link"></i></a>
+</h3>
+<p>Maybe it has been explained in a subtle way, but can I ask why we are not using gradient descent i.e. first-order derivatives but IRWLS in optimisation for GLMs? Is it because the latter tends to be faster, and that we don’t need to specify a learning rate (which we also need to fine-tune iteratively). But isn’t this method also prone to non-convergence, e.g. when the Hessian is singular?</p>
+</div>
+<div id="response-11" class="section level3" number="6.4.2">
+<h3>
+<span class="header-section-number">6.4.2</span> Response<a class="anchor" aria-label="anchor" href="#response-11"><i class="fas fa-link"></i></a>
+</h3>
+<p>Good question. You can absolutely use gradient descent instead but will have to select that learning rate, as you say.</p>
+<p>IRWLS effectively uses the hessian and a quadratic approximation of the log-likelihood to determine that learning rate and to adapt it as we approach the MLE. When that approximation is good, we will get faster convergence but when it is poor we may not (or we might even run into numerical issues as you point out).</p>
+<p>By making stronger assumptions, we are buying ourselves greater efficiency if they hold, but risk things breaking if they do not.</p>
+<hr>
+</div>
+</div>
+<div id="true-error-rate-definition" class="section level2" number="6.5">
+<h2>
+<span class="header-section-number">6.5</span> True Error Rate Definition<a class="anchor" aria-label="anchor" href="#true-error-rate-definition"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-11" class="section level3" number="6.5.1">
+<h3>
+<span class="header-section-number">6.5.1</span> Question<a class="anchor" aria-label="anchor" href="#question-11"><i class="fas fa-link"></i></a>
+</h3>
+<p>Reading “Elements of Statistical Learning” 7.10 and 7.11, I have noticed the locution “True error rate” is used in several occasions. Could you provide a definition for it? What is the true error rate? Is it the same as the error for the Bayes Classifier?</p>
+</div>
+<div id="response-12" class="section level3" number="6.5.2">
+<h3>
+<span class="header-section-number">6.5.2</span> Response<a class="anchor" aria-label="anchor" href="#response-12"><i class="fas fa-link"></i></a>
+</h3>
+<p>Having had a quick look it seems that the authors are using <strong>true test error rate</strong> to refer to the test error rate at the population level, rather than the sample level. For an unbiased estimator this population test error rate can be considered as either:</p>
+<ul>
+<li>the error rate on the test data in the limit as the size of the test set becomes very large,</li>
+<li>expected value of the test error rate over all possible test data sets.</li>
+</ul>
+<p>For example see page 245. The authors are using very many predictors that are independent of class labels and state that “The true (test) error rate of any classifier [in this setting] is 50%”. The <strong>training error rate</strong> is likely to be very small here, because we have large ppp and will likely be over-fitting to the training data. The <strong>(sample) test error rate</strong> will be somewhere around 50% for any reasonably large test data set, but this is just an estimate of the <strong>population test error rate</strong> or <strong>true test error rate</strong>, which is exactly 50% in this case.</p>
+<hr>
+</div>
+</div>
+<div id="dispersion-parameter-in-gamma-glm" class="section level2" number="6.6">
+<h2>
+<span class="header-section-number">6.6</span> Dispersion parameter in Gamma GLM<a class="anchor" aria-label="anchor" href="#dispersion-parameter-in-gamma-glm"><i class="fas fa-link"></i></a>
+</h2>
+<div id="question-12" class="section level3" number="6.6.1">
+<h3>
+<span class="header-section-number">6.6.1</span> Question<a class="anchor" aria-label="anchor" href="#question-12"><i class="fas fa-link"></i></a>
+</h3>
+<p>It was mentioned in the note that the variance for gamma glm with dispersion of 2.5 is 0.4 times the variance of an exponential model. I still don’t really understand why we have this reciprocal relationship here. I thought the variance is always going to be dispersion parameter times the variance function. Could you please provide some further explanation on this? Thank you.</p>
+</div>
+<div id="response-13" class="section level3" number="6.6.2">
+<h3>
+<span class="header-section-number">6.6.2</span> Response<a class="anchor" aria-label="anchor" href="#response-13"><i class="fas fa-link"></i></a>
+</h3>
+<p>The reason for this is that the R output for a gamma GLM is giving the estmated shape parameter of the gamma distribution <span class="math inline">\(k\)</span>.</p>
+<p>What we are interested in is not the shape parameter of this gamma distribution, but rather the dispersion parameter of the corresponding exponential dispersion model. We derive the relationship between these two parameters in the video by comparing the conditional density functions for outcomes under each model.</p>
+<p>This gives us that <span class="math inline">\(k = 1/\phi\)</span> or <span class="math inline">\(\phi = 1/ k\)</span>, so our dispersion parameter in the exponential dispersion model is the reciprocal of the shape parameter value that is returned by this gamma GLM.</p>
 
 </div>
 </div>
@@ -213,12 +308,36 @@ Figure 6.4: Schematic plot showing the effect of centering on the dependence bet
 <li><a class="nav-link" href="#follow-up-response-1"><span class="header-section-number">6.2.4</span> Follow-up Response</a></li>
 </ul>
 </li>
+<li>
+<a class="nav-link" href="#exponential-family-expectation-of-ty"><span class="header-section-number">6.3</span> Exponential Family: Expectation of \(T(Y)\)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-9"><span class="header-section-number">6.3.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-10"><span class="header-section-number">6.3.2</span> Response</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#gradient-descent-and-irwls"><span class="header-section-number">6.4</span> Gradient Descent and IRWLS</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-10"><span class="header-section-number">6.4.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-11"><span class="header-section-number">6.4.2</span> Response</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#true-error-rate-definition"><span class="header-section-number">6.5</span> True Error Rate Definition</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-11"><span class="header-section-number">6.5.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-12"><span class="header-section-number">6.5.2</span> Response</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#dispersion-parameter-in-gamma-glm"><span class="header-section-number">6.6</span> Dispersion parameter in Gamma GLM</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-12"><span class="header-section-number">6.6.1</span> Question</a></li>
+<li><a class="nav-link" href="#response-13"><span class="header-section-number">6.6.2</span> Response</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/05-glm.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/05-glm.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/zakvarty/super-learn-faq//blob/master/05-glm.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/zakvarty/super-learn-faq//edit/master/05-glm.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -230,7 +349,7 @@ Figure 6.4: Schematic plot showing the effect of centering on the dependence bet
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>MLDS Supervised Learning Student Questions</strong>" was written by Zak Varty. It was last built on 2022-03-28.</p>
+    <p>"<strong>MLDS Supervised Learning Student Questions</strong>" was written by Zak Varty. It was last built on 2022-03-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

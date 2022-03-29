@@ -125,4 +125,79 @@ You can see this more clearly for linear regression in the diagram below. If our
 <p class="caption">(\#fig:centering-diagram)Schematic plot showing the effect of centering on the dependence between parameter estimates.</p>
 </div>
 
+--------------------------------------------------------------------------------
+
+## Exponential Family: Expectation of $T(Y)$
+
+### Question 
+
+Hi, I cannot quite get to the same result shown here: 
+
+<div class="figure" style="text-align: center">
+<img src="img/05-glm/exp_fam_ET.png" alt="Derivation of $E[T(Y)]$." width="80%" />
+<p class="caption">(\#fig:exp-fam-ET-1)Derivation of $E[T(Y)]$.</p>
+</div>
+
+If I try to prove it, I find myself with the derivative of $\eta$ surviving:
+
+<div class="figure" style="text-align: center">
+<img src="img/05-glm/exp_fam_ET_2.png" alt="Alternative derivation of $E[T(Y)]$." width="80%" />
+<p class="caption">(\#fig:exp-fam-ET-2)Alternative derivation of $E[T(Y)]$.</p>
+</div>
+
+### Response
+
+Well spotted, I may have misspoken on in the recording.
+
+Your derivation is correct in the general exponential family case and then if we use the canonical parameterisation, so that $\eta(\theta) = \theta$, then your extra term is, giving the stated result.  
+
+--------------------------------------------------------------------------------
+
+## Gradient Descent and IRWLS 
+
+### Question 
+
+Maybe it has been explained in a subtle way, but can I ask why we are not using gradient descent i.e. first-order derivatives but IRWLS in optimisation for GLMs? Is it because the latter tends to be faster, and that we don't need to specify a learning rate (which we also need to fine-tune iteratively). But isn't this method also prone to non-convergence, e.g. when the Hessian is singular?
+
+### Response
+
+Good question. You can absolutely use gradient descent instead but will have to select that learning rate, as you say. 
+
+IRWLS effectively uses the hessian and a quadratic approximation of the log-likelihood to determine that learning rate and to adapt it as we approach the MLE. When that approximation is good, we will get faster convergence but when it is poor we may not (or we might even run into numerical issues as you point out). 
+
+By making stronger assumptions, we are buying ourselves greater efficiency if they hold, but risk things breaking if they do not. 
+
+--------------------------------------------------------------------------------
+
+## True Error Rate Definition 
+
+### Question
+
+Reading "Elements of Statistical Learning" 7.10 and 7.11, I have noticed the locution "True error rate" is used in several occasions. Could you provide a definition for it? What is the true error rate? Is it the same as the error for the Bayes Classifier?
+
+### Response 
+
+Having had a quick look it seems that the authors are using **true test error rate** to refer to the test error rate at the population level, rather than the sample level.  For an unbiased estimator this population test error rate can be considered as either: 
+
+- the error rate on the test data in the limit as the size of the test set becomes very large, 
+- expected value of the test error rate over all possible test data sets.
+
+For example see page 245. The authors are using very many predictors that are independent of class labels and state that "The true (test) error rate of any classifier [in this setting] is 50%".  The **training error rate** is likely to be very small here, because we have large ppp and will likely be over-fitting to the training data.  The **(sample) test error rate** will be somewhere around 50% for any reasonably large test data set, but this is just an estimate of the **population test error rate**  or **true test error rate**, which is exactly 50% in this case. 
+
+--------------------------------------------------------------------------------
+
+## Dispersion parameter in Gamma GLM 
+
+### Question 
+
+It was mentioned in the note that the variance for gamma glm with dispersion of 2.5 is 0.4 times the variance of an exponential model. I still don't really understand why we have this reciprocal relationship here. I thought the variance is always going to be dispersion parameter times the variance function. Could you please provide some further explanation on this? Thank you.
+
+### Response 
+
+The reason for this is that the R output for a gamma GLM is giving the estmated shape parameter of the gamma distribution $k$. 
+
+What we are interested in is not the shape parameter of this gamma distribution, but rather the dispersion parameter of the corresponding exponential dispersion model.  We derive the relationship between these two parameters in the video by comparing the conditional density functions for outcomes under each model. 
+
+This gives us that $k = 1/\phi$ or $\phi = 1/ k$, so our dispersion parameter in the exponential dispersion model is the reciprocal of the shape parameter value that is returned by this gamma GLM.
+
 
